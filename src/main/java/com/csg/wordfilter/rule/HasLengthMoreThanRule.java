@@ -3,6 +3,10 @@ package com.csg.wordfilter.rule;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * This class implements the `TextFilterRule` interface and defines a rule that filters text based on a minimum length.
+ * Words must be longer than the specified length
+ */
 public class HasLengthMoreThanRule implements TextFilterRule {
 
 	private int minLength;

@@ -20,9 +20,11 @@ public class WordFilter {
 
 		String[] ruleParams = Arrays.copyOfRange(args, 2, args.length);
 
-		// Read the file content
 		try {
+			// Read the file content
 			String content = WordFilterUtil.readFileToString(filePath);
+			
+			// Breaks the string into tokens to have a list of words
 			List<String> tokens = WordFilterUtil.getStringTokens(content);
 
 			/**
@@ -31,7 +33,7 @@ public class WordFilter {
 			Map<String, TextFilterRule> rules = new HashMap<String, TextFilterRule>();
 
 			/**
-			 * this can be enhanced by using IoC or dynamically loading classes
+			 * this can be enhanced later by using IoC or dynamically loading classes
 			 */
 			TextFilterRule rule1 = new StartsWithRule();
 			rules.put(rule1.getName(), rule1);

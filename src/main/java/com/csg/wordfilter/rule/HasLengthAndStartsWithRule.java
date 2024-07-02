@@ -3,6 +3,11 @@ package com.csg.wordfilter.rule;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * This class implements the `TextFilterRule` interface and defines a rule that filters text based on
+ * both minimum length and starting characters. Words must meet both criteria to be included in the filtered list.
+ */
+
 public class HasLengthAndStartsWithRule implements TextFilterRule {
 
 	private int length;
