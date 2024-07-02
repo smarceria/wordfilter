@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -16,10 +15,14 @@ import java.util.regex.Pattern;
 
 public class WordFilterUtil {
 
-	public static String readFileToString(String filePath) throws IOException {
+	public static String readFileToString(String filePath) throws Exception {
 	    File file = new File(filePath);
 	    if (!file.exists()) {
 	      throw new FileNotFoundException("File not found: " + filePath);
+	    }
+	    
+	    if(!validateFileFormat(filePath)) {
+	    	throw new IncorrectFileExtensionException("Please input file using .csv or .txt extension");
 	    }
 	    
 	    StringBuilder content = new StringBuilder();
@@ -49,8 +52,7 @@ public class WordFilterUtil {
     }
 
     private static String sanitize(String text) {
-        Pattern pattern = Pattern.compile("\\w+");  // Matches one or more word characters
-       // Pattern pattern = Pattern.compile("\\w+(?:'\\w+)*");  // Matches words with optional apostrophes 
+        Pattern pattern = Pattern.compile("\\w+");
         Matcher matcher = pattern.matcher(text);
         StringBuilder sanitizedText = new StringBuilder();
         while (matcher.find()) {
@@ -58,7 +60,31 @@ public class WordFilterUtil {
           sanitizedText.append(" ");
         }
         return sanitizedText.toString().trim();
-      }
+    }
+    
+    private static boolean validateFileFormat(String filePath) {
+    	if (filePath == null || filePath.isEmpty()) {
+    	  throw new IllegalArgumentException("File path cannot be null or empty");
+    	}
+    	
+    	String extension = getFileExtension(filePath);
+    	return extension.equalsIgnoreCase("txt") || extension.equalsIgnoreCase("csv");
+    }
+    
+    private static String getFileExtension(String filePath) {
+    	int index = filePath.lastIndexOf('.');
+    	if (index == -1) {
+    		return "";
+    	}
+    	return filePath.substring(index + 1);
+    }
+   
+}
+
+class IncorrectFileExtensionException extends RuntimeException { 
+    public IncorrectFileExtensionException(String errorMessage) {
+        super(errorMessage);
+    }
 }
 
 

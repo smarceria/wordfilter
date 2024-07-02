@@ -7,7 +7,7 @@ This program allows you to filter words in a text file based on various criteria
 - HasLengthMoreThan: Filter words exceeding a certain length (e.g., filter words longer than 5 characters).
 - HasLengthAndStartsWith: Filter words with specific length and prefix (e.g. filter word with length 5 and starting with “m”)
 
-# Features:
+# Features
 -	Input file path in local machine to be filtered
 -	User-friendly input for specifying the filter rules
 -	Outputs a list of filtered words.
@@ -21,6 +21,7 @@ This program allows you to filter words in a text file based on various criteria
     ``` java -jar target/WordFilter-0.0.1-SNAPSHOT.jar <input_file.txt> <filter_rule> <rule_param> ```
 
     - <input_file.txt>: Path to the text file containing the words to be filtered.
+	**notes** accept only .txt and .csv file format for this time.
     - <filter_rule>: rule name for filtering. Rule name currenlty implemented:
         -	StartsWith
         -	HasLengthMoreThan
