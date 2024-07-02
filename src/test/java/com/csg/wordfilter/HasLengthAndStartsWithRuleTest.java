@@ -8,17 +8,15 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.csg.wordfilter.rule.StartsWithRule;
+import com.csg.wordfilter.rule.HasLengthAndStartsWithRule;
 import com.csg.wordfilter.rule.TextFilterRule;
 
-public class StartWithRuleTest {
-
+public class HasLengthAndStartsWithRuleTest {
 	@Test
-	public void testStartsWith_shouldReturnInputStringIfStartsWithPrefix() {
+	public void testHasLengthAndStartsWith_shouldReturnInputStringWithDefinedLength() {
 		 List<String> testText = Arrays.asList("hello", "Mama", "I", "love", "you", "to", "the", "moon", "and", "back");
-
-		 TextFilterRule rule = new StartsWithRule();
-		 List<String> filteredStrings = rule.filter(testText, new String[] {"m"});
+		 TextFilterRule rule = new HasLengthAndStartsWithRule();
+		 List<String> filteredStrings = rule.filter(testText, new String[] {"4", "m"});
 
 		 assertEquals(2, filteredStrings.size());
 		 assertTrue(filteredStrings.contains("Mama"));
