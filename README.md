@@ -58,16 +58,6 @@ The project utilizes standard Java libraries and doesn't require any additional 
 # Build and Deployment
 The project uses Maven for building and packaging. The ```mvn clean install``` command creates an executable JAR file in the target directory. This JAR file can be deployed on any system with Java installed.
 <br/>Currently, this project utilizes a local Jenkins instance for a basic CI/CD pipeline. This pipeline automates tasks to ensure code quality and prepare the application for deployment.
-<br/>Here's a breakdown of how it work:
-1. Code Commit:
-   When pushing code changes to your GitHub repository, Jenkins detects the update.
-2. Build Stage:
-  Jenkins triggers a build job that performs the following actions:
-  - Clones the latest code from your GitHub repository.
-  - Runs Maven commands (mvn clean install) to build the project, download dependencies, and create the JAR file.
-  - Executes unit tests (mvn test) to ensure code functionality hasn't regressed.
-3. Artifact Staging:
-  Jenkins can stage the generated JAR file as an artifact in a local repository (e.g., within Jenkins itself) for future reference.
 
 # Testing
 Unit tests are included in the src/test/java directory to ensure code functionality.
